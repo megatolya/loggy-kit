@@ -1,0 +1,24 @@
+{
+  "main": "index.html",
+  "name": "Loggy",
+  "description": "Logging tool",
+  "version": "0.1.0",
+  "keywords": [ "log", "logs" ],
+  "window": {
+    "title": "Loggy - for logs",
+    "toolbar": false,
+    "frame": false,
+    "width": 824,
+    "height": 768,
+    "position": "center",
+    "min_width": 400,
+    "min_height": 200
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "chokidar": "~0.6.3",
+    "request": "~2.27"
+  }
+}

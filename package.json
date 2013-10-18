@@ -1,0 +1,38 @@
+{
+  "name": "loggy-kit",
+  "description": "Logging tool",
+  "version": "0.1.0",
+  "homepage": "https://github.com/megatolya/loggy-kit",
+  "author": {
+    "name": "Anatoliy Ostrovskiy",
+    "email": "forgetthisbox@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/megatolya/loggy-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/megatolya/grunt-enb/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "async": "~0.2.9",
+    "grunt-node-webkit-builder": "~0.1.11"
+  },
+  "contributors": [
+    {
+      "name": "Anatoliy Ostrovskiy",
+      "url": "https://github.com/megatolya"
+    }
+  ],
+  "keywords": [
+    "log",
+    "logging",
+    "tool"
+  ]
+}

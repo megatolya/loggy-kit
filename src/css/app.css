@@ -1,0 +1,96 @@
+body
+{
+    padding-top: 30px;
+}
+
+.toolbar
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 30px;
+    width: 100%;
+    text-align: center;
+    background: #f3f3f3;
+    border-bottom: 1px solid gray;
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    opacity: .9;
+}
+.toolbar *
+{
+    -webkit-user-select: none;
+    cursor: default;
+}
+
+.toolbar strong
+{
+    line-height: 27px;
+}
+
+.toolbar .btn
+{
+    position: absolute;
+}
+.toolbar .cls
+{
+    left: 5px;
+    top: 4px;
+}
+
+.toolbar .min
+{
+    left: 32px;
+    top: 4px;
+}
+
+.toolbar .max
+{
+    left: 59px;
+    top: 4px;
+}
+
+.toolbar .full
+{
+    right: 5px;
+    top: 4px;
+}
+
+.hover:hover
+{
+    cursor: pointer;
+}
+
+.log__date,
+.log__module
+{
+    white-space: nowrap;
+}
+.page.__logger .page-header
+{
+    border-bottom: none;
+}
+
+.center-button
+{
+    position: fixed;
+    top: 300px;
+    left: 50%;
+    margin-left: -72px;
+}
+
+.search
+{
+    width: 100%;
+}
+
+pre code
+{
+    white-space: pre;
+    background: none;
+}
+
+.reload
+{
+    margin: 0 0 20px 20px;
+}
