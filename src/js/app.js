@@ -76,11 +76,67 @@
                         firstTimePos = false;
                     }
                     $('.logs').html(html);
+                    findAll();
                 });
             });
         });
+
+        $('.search').on('change keyup blur', function() {
+            var $this = $(this);
+
+            if ($this.val()) {
+                $this.next().show();
+            } else {
+                $this.next().hide();
+            }
+            findAll();
+        });
+
         $('.reload').click(function() {
             window.location.reload();
         });
+
+        $('.logs').on('click', '.log.elem', function() {
+            var $this = $(this);
+            var raw = $this.data('raw');
+            if (raw.length < 30) {
+                var input = $('.search.__' + $this.data('search'))
+                input.val(raw);
+                input.trigger('change');
+            }
+        });
+
+        $('.clear-input').click(function() {
+            var input = $(this).prev();
+
+            input.val('');
+            input.trigger('change');
+        });
+
+        $('.clear-input').hide();
+
+        function findAll() {
+            $('.logs tr').show();
+
+            $('.search').each(function() {
+                var $this = $(this);
+                var searchRegExp = new RegExp($this.val(), 'gi');
+
+                find(searchRegExp, $this.data('col'));
+            });
+        }
+
+        function find(reg, col) {
+            var logs = $('.log').filter('.__' + col);
+
+            logs.each(function(i, cell) {
+                var $cell = $(cell),
+                    $row = $cell.parents('tr');
+
+                if (!reg.test($cell.data('raw'))) {
+                    $row.hide();
+                }
+            });
+        }
     });
 })(this);

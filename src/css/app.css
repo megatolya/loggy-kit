@@ -1,74 +1,31 @@
-body
+.loggy-header
 {
-    padding-top: 30px;
+    margin-left: 10px;
 }
 
-.toolbar
-{
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 30px;
-    width: 100%;
-    text-align: center;
-    background: #f3f3f3;
-    border-bottom: 1px solid gray;
-    -webkit-app-region: drag;
-    -webkit-user-select: none;
-    opacity: .9;
-}
-.toolbar *
-{
-    -webkit-user-select: none;
-    cursor: default;
-}
-
-.toolbar strong
-{
-    line-height: 27px;
-}
-
-.toolbar .btn
-{
-    position: absolute;
-}
-.toolbar .cls
-{
-    left: 5px;
-    top: 4px;
-}
-
-.toolbar .min
-{
-    left: 32px;
-    top: 4px;
-}
-
-.toolbar .max
-{
-    left: 59px;
-    top: 4px;
-}
-
-.toolbar .full
-{
-    right: 5px;
-    top: 4px;
-}
 
 .hover:hover
 {
     cursor: pointer;
 }
 
-.log__date,
-.log__module
+td
+{
+    position: relative;
+}
+
+.log.__date,
+.log.__module
 {
     white-space: nowrap;
 }
 .page.__logger .page-header
 {
     border-bottom: none;
+}
+.page.__logger .page-header h4
+{
+    margin-left: 30px;
 }
 
 .center-button
@@ -79,10 +36,6 @@ body
     margin-left: -72px;
 }
 
-.search
-{
-    width: 100%;
-}
 
 pre code
 {
@@ -93,4 +46,32 @@ pre code
 .reload
 {
     margin: 0 0 20px 20px;
+}
+
+.clear-input {
+    font-weight: bolder;
+    border: 1px solid #CCC;
+    background: #DDD;
+    z-index: 1;
+    top: 16px;
+    right: 13px;
+    display: block;
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    border-radius: 50%;
+    padding: 0px 5px;
+    color: white;
+    cursor: pointer;
+    -webkit-user-select: none;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.clear-input:hover {
+    background: #CCC;
+}
+
+.clear-input:active {
+    background: #AAA;
 }

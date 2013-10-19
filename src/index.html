@@ -1,91 +1,83 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>Loggy</title>
-    <meta charset="utf8">
+        <title>Loggy</title>
+        <meta charset="utf8">
 
-    <script src="js/jquery-2.0.3.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/jquery-2.0.3.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/mustache.js"></script>
+        <script src="js/highlight.min.js"></script>
 
-    <script src="js/mustache.js"></script>
+        <script src="js/parser.js"></script>
+        <script src="js/watcher.js"></script>
 
-    <script src="js/highlight.min.js"></script>
+        <script src="js/app.js"></script>
 
-    <script src="js/parser.js"></script>
-    <script src="js/watcher.js"></script>
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/github.css">
 
-    <script src="js/app.js"></script>
-
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-
-    <link rel="stylesheet" href="css/github.css">
-
-    <link rel="stylesheet" href="css/app.css">
-</head>
-<body>
-    <div class="toolbar">
-        <button onclick="window.close()" title="Закрыть" class="cls btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-        <button onclick="require('nw.gui').Window.get().minimize();" title="Уменьшить" class="min btn btn-xs btn-warning"><i class="glyphicon glyphicon-minus"></i></button>
-        <button onclick="require('nw.gui').Window.get().maximize();" title="Увеличить" class="max btn btn-xs btn-success"><i class="glyphicon glyphicon-plus"></i></button>
-        <button onclick="require('nw.gui').Window.get().toggleFullscreen();" class="full btn btn-xs btn-primary"><i class="glyphicon glyphicon-plus"></i></button>
-        <strong>Loggy</strong>
-    </div>
-    <div class="page __file-chooser">
-        <div class="container">
-            <div class="page-header">
-                <h1>Добро пожаловать!</h1>
-                <p>Выберите файл, чтобы продолжить.</p>
+        <link rel="stylesheet" href="css/app.css">
+    </head>
+    <body>
+        <div class="page __file-chooser">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Добро пожаловать!</h1>
+                    <p>Выберите файл, чтобы продолжить.</p>
+                </div>
             </div>
+            <div class="center-button">
+                <button class="choose-file btn btn-success btn-lg">Выбрать файл</button>
+            </div>
+            <input type="file" class="hide file">
         </div>
-        <div class="center-button">
-            <button class="choose-file btn btn-success btn-lg">Выбрать файл</button>
+        <div class="page __logger">
+            <div class="page-header">
+                <h4>Logging: <small class="full-path"></small></h4>
+            </div>
+            <button type="button" class="reload btn btn-primary">Выбрать другой файл</button>
+            <table class="table table-bordered table-hover table-striped">
+                <thead>
+                        <tr class="log">
+                            <td width="15%" class="">Дата</td>
+                            <td width="15%" class="">Модуль</td>
+                            <td width="15%" class="">Уровень</td>
+                            <td width="55%" class="">Сообщение</td>
+                        </tr>
+                        <tr class="log">
+                            <td width="15%" class="">
+                                <input data-col="date" class="form-control search __date">
+                                <span class="clear-input">x</span>
+                            </td>
+                            <td width="15%" class="">
+                                <input data-col="module" class="form-control search __module">
+                                <span class="clear-input">x</span>
+                            </td>
+                            <td width="15%" class="">
+                                <input data-col="level" class="form-control search __level">
+                                <span class="clear-input">x</span>
+                            </td>
+                            <td width="55%" class="">
+                                <input data-col="data" class="form-control search __data">
+                                <span class="clear-input">x</span>
+                            </td>
+                        </tr>
+                    </thead>
+                <tbody class="logs">
+                </tbody>
+            </table>
         </div>
-        <input type="file" class="hide file">
-    </div>
-    <div class="page __logger">
-        <div class="page-header">
-              <h1>Loggy <small class="full-path"></small></h1>
-          </div>
-          <button type="button" class="reload btn btn-primary">Выбрать другой файл</button>
-          <table class="table table-bordered table-hover table-striped">
-              <thead>
-                    <tr class="log">
-                        <td width="15%" class="log__date">Дата</td>
-                        <td width="15%" class="log__module">Модуль</td>
-                        <td width="15%" class="log__level">Уровень</td>
-                        <td width="55%" class="log__data">Сообщение</td>
-                    </tr>
-                    <!--<tr class="log">-->
-                        <!--<td width="15%" class="log__date">-->
-                            <!--<input data-col="date" class="search __date">-->
-                        <!--</td>-->
-                        <!--<td width="15%" class="log__module">-->
-                            <!--<input data-col="module" class="search __module">-->
-                        <!--</td>-->
-                        <!--<td width="15%" class="log__level">-->
-                            <!--<input data-col="level" class="search __level">-->
-                        <!--</td>-->
-                        <!--<td width="55%" class="log__data">-->
-                            <!--<input data-col="data" class="search __data">-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                </thead>
-            <tbody class="logs">
-            </tbody>
-          </table>
-    </div>
-</body>
-<script type="text/html" class="tpl __log">
-    <tr class="log">
-        <td width="15%" class="log__date">{{log.date}}</td>
-        <td width="15%" class="log__module">{{log.module}}</td>
-        <td width="15%" class="log__level">
-            <span class="label {{log.label}}">{{log.level}}</span>
-        </td>
-        <td width="55%" class="log__data">{{{log.data}}}</td>
-    </tr>
-</script>
-<script type="text/html" class="tpl __header-log">
-</script>
+        <script type="text/html" class="tpl __log">
+            <tr class="log">
+                <td width="15%" class="log elem __date" data-search="date" data-raw="{{log.date}}">{{log.date}}</td>
+                <td width="15%" class="log elem __module" data-search="module" data-raw="{{log.module}}">{{log.module}}</td>
+                <td width="15%" class="log elem __level" data-search="level" data-raw="{{log.level}}">
+                    <span class="label {{log.label}}">{{log.level}}</span>
+                </td>
+                <td width="55%" class="log elem __data" data-search="data" data-raw="{{log.data}}">{{{log.data}}}</td>
+            </tr>
+        </script>
+    </body>
 </html>
