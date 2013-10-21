@@ -17,5 +17,5 @@ cd src
 npm install
 cd ../
 grunt
-ls -al build/
+ls -al build/releases/Loggy/
 ```
